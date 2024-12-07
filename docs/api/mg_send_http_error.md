@@ -27,6 +27,7 @@ A body of the error message, to explain the error in more detail, can be specifi
 
 ### See Also
 
+* [`mg_send_http();`](mg_send_http.md)
 * [`mg_send_http_ok();`](mg_send_http_ok.md)
 * [`mg_send_http_redirect();`](mg_send_http_redirect.md)
 

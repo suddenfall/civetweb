@@ -4676,8 +4676,9 @@ mg_send_http_error(struct mg_connection *conn, int status, const char *fmt, ...)
 
 
 CIVETWEB_API int
-mg_send_http_ok(struct mg_connection *conn,
+mg_send_http(struct mg_connection *conn,
                 const char *mime_type,
+                int status,
                 long long content_length)
 {
 	if ((mime_type == NULL) || (*mime_type == 0)) {
@@ -4685,7 +4686,7 @@ mg_send_http_ok(struct mg_connection *conn,
 		mime_type = "text/html";
 	}
 
-	mg_response_header_start(conn, 200);
+	mg_response_header_start(conn, status);
 	send_no_cache_header(conn);
 	send_additional_header(conn);
 	send_cors_header(conn);
@@ -4716,6 +4717,13 @@ mg_send_http_ok(struct mg_connection *conn,
 	return 0;
 }
 
+CIVETWEB_API int
+mg_send_http_ok(struct mg_connection *conn,
+                const char *mime_type,
+                long long content_length)
+{
+	return mg_send_http(conn, mime_type, 200, content_length);
+}
 
 CIVETWEB_API int
 mg_send_http_redirect(struct mg_connection *conn,

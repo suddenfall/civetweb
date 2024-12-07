@@ -38,4 +38,5 @@ Status codes 301 and 302 were defined in HTTP/1.0, status codes 303, 307 and 308
 
 * [`mg_send_http_error();`](mg_send_http_error.md)
 * [`mg_send_http_ok();`](mg_send_http_ok.md)
+* [`mg_send_http();`](mg_send_http.md)
 

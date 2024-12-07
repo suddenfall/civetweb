@@ -26,6 +26,7 @@ The `content_len` specifies the size of the response body in bytes. If the size 
 
 ### See Also
 
+* [`mg_send_http();`](mg_send_http.md)
 * [`mg_send_http_error();`](mg_send_http_error.md)
 * [`mg_send_http_redirect();`](mg_send_http_redirect.md)
 * [`mg_write();`](mg_write.md)

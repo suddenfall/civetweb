@@ -1,4 +1,4 @@
-/* Copyright (c) 2013-2024 the Civetweb developers
+/* Copyright (c) 2013-2021 the Civetweb developers
  * Copyright (c) 2004-2013 Sergey Lyubka
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -23,9 +23,9 @@
 #ifndef CIVETWEB_HEADER_INCLUDED
 #define CIVETWEB_HEADER_INCLUDED
 
-#define CIVETWEB_VERSION "1.17"
+#define CIVETWEB_VERSION "1.16"
 #define CIVETWEB_VERSION_MAJOR (1)
-#define CIVETWEB_VERSION_MINOR (17)
+#define CIVETWEB_VERSION_MINOR (16)
 #define CIVETWEB_VERSION_PATCH (0)
 
 #ifndef CIVETWEB_API
@@ -928,6 +928,23 @@ CIVETWEB_API int mg_send_http_error(struct mg_connection *conn,
                                     PRINTF_FORMAT_STRING(const char *fmt),
                                     ...) PRINTF_ARGS(3, 4);
 
+
+/* Send response header with a specific http code.
+ * After calling this function, use mg_write or mg_send_chunk to send the
+ * response body.
+ * Parameters:
+ *   conn: Current connection handle.
+ *   mime_type: Set Content-Type for the following content.
+ *   status: Set the status code of the reponse.
+ *   content_length: Size of the following content, if content_length >= 0.
+ *                   Will set transfer-encoding to chunked, if set to -1.
+ * Return:
+ *   < 0   Error
+ */
+CIVETWEB_API int mg_send_http(struct mg_connection *conn,
+                                 const char *mime_type,
+                                 int status,
+                                 long long content_length);
 
 /* Send "HTTP 200 OK" response header.
  * After calling this function, use mg_write or mg_send_chunk to send the
